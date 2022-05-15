@@ -1,0 +1,42 @@
+.converter {
+	text-align: center;
+	padding: 20px 0;
+	display: flex;
+	flex-direction: column;
+	& .converter__date {
+		font-size: 26px;
+		font-weight: 700;
+		margin-bottom: 70px;
+		color: #AAAAAA;
+	}
+
+	& .converter__container {
+		
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		& .converter__reverse button {
+			cursor: pointer;
+			padding: 10px;
+			outline: none;
+			border: none;
+			border-radius: 9px;
+			transition: all 0.2s;
+			& svg {
+				& path{
+					transition: all 0.2s;
+					fill: #AAAAAA;
+	
+	}
+			}
+		&:hover {
+			transform: scale(1.1);
+			& svg path {
+				fill: #000;
+			}
+		}
+		} 
+		
+	}
+
+}

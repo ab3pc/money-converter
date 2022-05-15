@@ -1,0 +1,77 @@
+.converter__item {
+	& .converter__select {
+		display: flex;
+		align-items: center;
+		margin-bottom: 25px;
+		font-size: 16px;
+		text-align: left;
+		position: relative;
+
+		& div {
+			width: 50px;
+		}
+
+		& select {
+			display: block;
+			width: 100%;
+			padding: .5rem;
+			background: none;
+			border: 1px solid #ccc;
+			border-radius: 3px;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			font-family: inherit;
+			color: #444;
+			outline: none;
+		}
+
+		&:after {
+			content: "";
+			display: block;
+			border-style: solid;
+			border-width: 6px 5px 0 5px;
+			border-color: #AAAAAA transparent transparent transparent;
+			pointer-events: none;
+			position: absolute;
+			top: 50%;
+			right: 9px;
+			z-index: 1;
+			transform: translateY(-50%);
+		}
+
+	}
+
+	& .input__container {
+		position: relative;
+
+		& .input {
+			padding: 20px 15px 60px 15px;
+			font-size: 32px;
+			border-radius: 9px;
+			outline: none;
+			border: 2px solid #AAAAAA;
+			transition: all 0.2s;
+
+			&:focus {
+				border: 2px solid #5977FD;
+			}
+
+		}
+
+		input[type=number]::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+		}
+
+		& .moneyValForOne {
+			position: absolute;
+			bottom: 5px;
+			left: 50%;
+			font-weight: 700;
+			color: #d3d3d3;
+			transform: translateX(-50%);
+
+		}
+	}
+
+}
