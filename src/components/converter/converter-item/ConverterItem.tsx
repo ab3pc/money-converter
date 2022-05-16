@@ -35,7 +35,7 @@ const ConverterItem:React.FC<IProps> = ({input, onChangeSelect, onChangeInput, v
       </select>
     </div>
     <div className={styles.input__container}>
-      <input className={styles.input} type="number" value={input.input} onChange={onChangeInput}/>
+      <input className={styles.input} placeholder='0' type="number" value={input.input} onChange={onChangeInput}/>
       <div className={styles.moneyValForOne}>{values}</div>
     </div>
   </div>
