@@ -17,3 +17,8 @@ export interface Iinput {
 	input: number | string,
 	activeSelect: ISelectValues
 }
+export interface IValues {
+	UAH: number,
+	USD: number,
+	EUR: number,
+}

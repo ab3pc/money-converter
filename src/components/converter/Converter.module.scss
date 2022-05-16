@@ -1,4 +1,5 @@
 .converter {
+	margin-top: 100px;
 	text-align: center;
 	padding: 20px 0;
 	display: flex;
@@ -39,4 +40,9 @@
 		
 	}
 
+}
+@media (max-width: 1000px) {
+	.converter__container {
+		flex-direction: column;
+	}
 }

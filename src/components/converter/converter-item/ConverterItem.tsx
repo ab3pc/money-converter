@@ -6,20 +6,20 @@ import iconUA from '../../../img/ua.png'
 import iconUSD from '../../../img/usd.png'
 import iconEUR from '../../../img/eu.png'
 interface IProps {
- 
   input:Iinput,
-  onChangeSelect?: (e:React.ChangeEvent<HTMLSelectElement>)=>  void, 
-  onChangeInput?: (e:React.ChangeEvent<HTMLInputElement>)=>  void
+  onChangeSelect: (e:React.ChangeEvent<HTMLSelectElement>)=>  void, 
+  onChangeInput: (e:React.ChangeEvent<HTMLInputElement>)=>  void,
+  values:string
 }
 
-const ConverterItem:React.FC<IProps> = ({input, onChangeSelect, onChangeInput}) => {
+const ConverterItem:React.FC<IProps> = ({input, onChangeSelect, onChangeInput, values}) => {
 
   const icoValues = {
       USD: iconUSD,
       UAH: iconUA,
       EUR: iconEUR
   }
-  
+
   return (
     <div className={styles.converter__item}>
     <div className={styles.converter__select}>
@@ -36,7 +36,7 @@ const ConverterItem:React.FC<IProps> = ({input, onChangeSelect, onChangeInput}) 
     </div>
     <div className={styles.input__container}>
       <input className={styles.input} type="number" value={input.input} onChange={onChangeInput}/>
-      <div className={styles.moneyValForOne}>1 $ = 27 ₴</div>
+      <div className={styles.moneyValForOne}>{values}</div>
     </div>
   </div>
   )

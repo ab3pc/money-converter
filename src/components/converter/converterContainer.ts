@@ -1,5 +1,7 @@
+
+import { ISelectValues } from './types';
 import { connect } from 'react-redux';
-import { recalcValuesFrom, resetValues } from '../../store/slices/moneyValues/moneyValues-slice';
+import { getMoneyValuesAsync, recalcValuesFrom, recalcValuesTo, resetValues, selectValuesFrom, selectValuesTo, setInputFrom, setInputTo } from '../../store/slices/moneyValues/moneyValues-slice';
 import { AppDispatch, RootState } from './../../store/store';
 import Converter from './Converter';
 
@@ -10,6 +12,32 @@ const mapDispatchToProps = (dispatch:AppDispatch) => {
 			dispatch(resetValues())
 			dispatch(recalcValuesFrom())
 		},
+		onChangeInputFromHandler: (e:React.ChangeEvent<HTMLInputElement>) => {
+			dispatch(setInputFrom(e.target.value))
+			dispatch(recalcValuesFrom())
+		},
+	
+		onChangeSelectFromHandler : (e:React.ChangeEvent<HTMLSelectElement>) => {
+			const typeSelect = e.target.value as ISelectValues;
+				dispatch(selectValuesFrom(typeSelect))
+				dispatch(recalcValuesFrom())
+		},
+		onChangeInputToHandler: (e:React.ChangeEvent<HTMLInputElement>) => {
+			dispatch(setInputTo(e.target.value))
+			dispatch(recalcValuesTo(''))
+	
+		},
+	
+		onChangeSelectToHandler: (e:React.ChangeEvent<HTMLSelectElement>) => {
+			const typeSelect = e.target.value as ISelectValues;
+				dispatch(selectValuesTo(typeSelect))
+				dispatch(recalcValuesTo('renderRightSide'))
+		},
+		getMoneyValuesHandler: () => {
+					dispatch(getMoneyValuesAsync())
+				
+			
+		}
 	 
 	}
   }

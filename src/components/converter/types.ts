@@ -7,5 +7,11 @@ export enum selectValues {
 export type ISelectValues = selectValues.USD | selectValues.UAH | selectValues.EUR;
 
 export interface IContainerProps extends IMoneyValuesState{
-	handleBtnReset:()=> void
+	handleBtnReset:()=> void,
+	onChangeInputFromHandler:(e: React.ChangeEvent<HTMLInputElement>)=> void,
+	onChangeSelectFromHandler:(e:React.ChangeEvent<HTMLSelectElement>)=> void,
+	onChangeSelectToHandler:(e:React.ChangeEvent<HTMLSelectElement>)=> void,
+	onChangeInputToHandler:(e: React.ChangeEvent<HTMLInputElement>)=> void,
+	getMoneyValuesHandler:() => void
+	//onChangeSelectFromHandler:()=> void
 }

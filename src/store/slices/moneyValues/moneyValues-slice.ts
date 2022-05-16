@@ -1,7 +1,8 @@
 import { ISelectValues } from './../../../components/converter/types';
 import { IMoneyValuesState } from './types';
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { selectValues } from '../../../components/converter/types';
+import { getMoneyValues } from '../../../components/api/money-values/moneyValues';
 
 
 
@@ -22,6 +23,18 @@ const initialState:IMoneyValuesState = {
 	},
 
 }
+export const getMoneyValuesAsync = createAsyncThunk(
+	'moneyValues/getMoneyValuesAsync',
+	async(_, {rejectWithValue}) => {
+		try {
+			const {data} = await getMoneyValues();
+			return data
+			
+		} catch (error) {
+			return rejectWithValue(error)
+		}
+	}
+)
 
 const moneyValues = createSlice({
 	name: 'moneyValues',
@@ -57,6 +70,23 @@ const moneyValues = createSlice({
 				state.inputFrom.input = (+state.inputTo.input * state.values[state.inputTo.activeSelect] / state.values[state.inputFrom.activeSelect]).toFixed(5);
 			}
 		},
+	},
+	extraReducers: {
+		[getMoneyValuesAsync.fulfilled.type]:(state,  action:PayloadAction<any>) => {
+			const {UAH,EUR, USD} = action.payload.conversion_rates;
+			let  lastUpdate = action.payload.time_last_update_utc;
+			lastUpdate = lastUpdate.split(' ').filter((el:string) => el!== '+0000').join(' ')
+			state.date = lastUpdate;
+			state.values.UAH = UAH;
+			state.values.EUR = USD *1000;
+			state.values.USD = EUR *1000;
+		
+			
+		},
+		[getMoneyValuesAsync.rejected.type]:(state, action:PayloadAction<any>) => {
+			console.log(action.payload);
+			
+		}
 	}
 })
 

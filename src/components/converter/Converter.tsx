@@ -1,45 +1,38 @@
 import React from "react";
 import styles from "./Converter.module.scss";
 import ConverterItem from "./converter-item/ConverterItem";
-import {IContainerProps, ISelectValues, selectValues } from "./types";
-import { IMoneyValuesState } from "../../store/slices/moneyValues/types";
-import { useAppDispatch } from "../../store/store";
-import { recalcValuesFrom, recalcValuesTo, selectValuesFrom, setInputFrom, setInputTo, selectValuesTo, resetValues } from "../../store/slices/moneyValues/moneyValues-slice";
+import { IContainerProps } from "./types";
+import { getFooterValuesToInput } from "../../utils/utils";
 
+const Converter = ({
+  values,
+  date,
+  inputTo,
+  inputFrom,
+  handleBtnReset,
+  onChangeInputFromHandler,
+  onChangeSelectFromHandler,
+  onChangeInputToHandler,
+  onChangeSelectToHandler,
+  getMoneyValuesHandler
+}: IContainerProps) => {
 
-
-const Converter = ({values, date, inputTo, inputFrom, handleBtnReset}:IContainerProps) => {
-	const dispatch = useAppDispatch();
-
-	const onChangeInputToHandler = (e:React.ChangeEvent<HTMLInputElement>) => {
-		dispatch(setInputTo(e.target.value))
-		dispatch(recalcValuesTo(''))
-
-	}
-	const onChangeInputFromHandler = (e:React.ChangeEvent<HTMLInputElement>) => {
-		dispatch(setInputFrom(e.target.value))
-		dispatch(recalcValuesFrom())
-	}
-
-	const onChangeSelectFromHandler = (e:React.ChangeEvent<HTMLSelectElement>) => {
-		const typeSelect = e.target.value as ISelectValues;
-			dispatch(selectValuesFrom(typeSelect))
-			dispatch(recalcValuesFrom())
-	}
-	const onChangeSelectToHandler = (e:React.ChangeEvent<HTMLSelectElement>) => {
-		const typeSelect = e.target.value as ISelectValues;
-			dispatch(selectValuesTo(typeSelect))
-			dispatch(recalcValuesTo('renderRightSide'))
-	}
-
-
+	React.useEffect(() => {
+		getMoneyValuesHandler();
+	}, [])
+		
   return (
     <div className={styles.converter}>
       <div className={styles.converter__date}>Last update: {date}</div>
 
       <div className={styles.converter__container}>
         <div className={styles.converter__from}>
-          <ConverterItem onChangeSelect={onChangeSelectFromHandler} onChangeInput={onChangeInputFromHandler} input={inputFrom}/>
+          <ConverterItem
+            onChangeSelect={onChangeSelectFromHandler}
+            onChangeInput={onChangeInputFromHandler}
+            input={inputFrom}
+			values ={ getFooterValuesToInput(inputFrom.activeSelect,inputTo.activeSelect, values)[0]}
+          />
         </div>
         <div className={styles.converter__reverse}>
           <button title="reset values" onClick={handleBtnReset}>
@@ -79,8 +72,13 @@ const Converter = ({values, date, inputTo, inputFrom, handleBtnReset}:IContainer
           </button>
         </div>
         <div className={styles.converter__to}>
-		<ConverterItem onChangeSelect={onChangeSelectToHandler} onChangeInput={ onChangeInputToHandler} input={inputTo}/>
-		</div>
+          <ConverterItem
+            onChangeSelect={onChangeSelectToHandler}
+            onChangeInput={onChangeInputToHandler}
+            input={inputTo}
+			values ={ getFooterValuesToInput(inputFrom.activeSelect,inputTo.activeSelect, values)[1]}
+          />
+        </div>
       </div>
     </div>
   );
