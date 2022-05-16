@@ -1,0 +1,19 @@
+$color: #AAAAAA;
+body {
+  font-family: "Lato", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.page {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	overflow: hidden;
+}
+.container {
+	width: 100%;
+	max-width: 1230px;
+	margin: 0 auto;
+	padding: 0 15px;
+}
