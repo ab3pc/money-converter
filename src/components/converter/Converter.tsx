@@ -23,7 +23,9 @@ const Converter = ({
 		
   return (
     <div className={styles.converter}>
-      <div className={styles.converter__date}>Last update: {date}</div>
+      <div className={styles.converter__date}>Welcome "userName" :) 
+		  <p> Last update: {date}</p>
+		 </div>
 
       <div className={styles.converter__container}>
         <div className={styles.converter__from}>

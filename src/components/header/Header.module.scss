@@ -17,17 +17,24 @@
 }
 .header__logo {
 	text-decoration: none;
-	color: #5977FD;
+	color: #3F51B5;
 	font-size: 25px;
 	font-weight: 700;
-
+	transition: all 0.2s;
+	&:hover {
+		transform: scale(1.05);
+	}
+	&:hover svg{
+		transform: rotate(180deg);
+	} 
 
 }
-.header__logo img {
+.header__logo svg {
 	margin-right: 15px;
 	display: inline-block;
 	vertical-align: middle;
-	
+	transition: all 0.2s;
+	fill: #E6B700;
 }
 
 .header__logo-name {
@@ -48,15 +55,4 @@
 .nav {
 	display: flex;
 
-}
-.nav__link {
-	display: flex;
-	align-items: center;
-
-	color: #fff;
-	padding: 0 10px;
-
-	text-decoration: none;
-
-	transition: background 0.2s linear;
 }

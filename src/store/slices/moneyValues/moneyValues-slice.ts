@@ -4,8 +4,6 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { selectValues } from '../../../components/converter/types';
 import { getMoneyValues } from '../../../components/api/money-values/moneyValues';
 
-
-
 const initialState:IMoneyValuesState = {
 	values: {
 		UAH: 1,
@@ -74,14 +72,15 @@ const moneyValues = createSlice({
 	extraReducers: {
 		[getMoneyValuesAsync.fulfilled.type]:(state,  action:PayloadAction<any>) => {
 			const {UAH,EUR, USD} = action.payload.conversion_rates;
-			let  lastUpdate = action.payload.time_last_update_utc;
-			lastUpdate = lastUpdate.split(' ').filter((el:string) => el!== '+0000').join(' ')
-			state.date = lastUpdate;
+			// let  lastUpdate = action.payload.time_last_update_utc;
+			// lastUpdate = lastUpdate.split(' ').filter((el:string) => el!== '+0000').join(' ')
+			let  lastUpdate = new Date().toString().split(' ');
+			lastUpdate.length = 5;
+			state.date = lastUpdate.join(' ')
 			state.values.UAH = UAH;
 			state.values.EUR = USD *1000;
 			state.values.USD = EUR *1000;
-		
-			
+					
 		},
 		[getMoneyValuesAsync.rejected.type]:(state, action:PayloadAction<any>) => {
 			console.log(action.payload);
