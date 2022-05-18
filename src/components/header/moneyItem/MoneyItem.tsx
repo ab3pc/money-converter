@@ -4,7 +4,7 @@ import styles from './MoneyItem.module.scss';
 interface IProps {
 	icon: string,
 	description: string,
-	values: number
+	values: string
 }
 const MoneyItem:React.FC<IProps> = ({icon, description, values}) => {
   return (

@@ -3,10 +3,10 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import moneyValuesSlice from "./slices/moneyValues/moneyValues-slice";
 
 const store = configureStore({
-	reducer: {
-		moneyValues: moneyValuesSlice
-	}
-})
+  reducer: {
+    moneyValues: moneyValuesSlice,
+  },
+});
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

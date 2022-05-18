@@ -10,6 +10,7 @@ interface IProps {
 
 const Header: React.FC<IProps> = ({ values }) => {
   const { USD, EUR } = useAppSelector((state) => state.moneyValues.values);
+
   return (
     <header className={styles.header} id="header">
       <div className="container">
@@ -75,13 +76,13 @@ const Header: React.FC<IProps> = ({ values }) => {
             <MoneyItem
               icon={usdIcon}
               description="USD"
-              values={USD}
-            ></MoneyItem>
+              values={USD.toFixed(2)}
+            />
             <MoneyItem
               icon={eurIcon}
               description="EUR"
-              values={EUR}
-            ></MoneyItem>
+              values={EUR.toFixed(2)}
+            />
           </nav>
         </div>
       </div>
